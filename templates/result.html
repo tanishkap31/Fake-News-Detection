@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h1>🧠 Prediction Result</h1>
+
+        <div class="result-box">
+            <p><strong>📰 News Input:</strong></p>
+            <p class="input-text">{{ input_text }}</p>
+
+            <p><strong>🧾 Prediction:</strong> 
+                <span class="badge {{ prediction_class }}">{{ prediction }}</span>
+            </p>
+
+            <p><strong>📊 Confidence:</strong> {{ probability }}%</p>
+        </div>
+
+        <a class="back-link" href="/">← Try Another</a>
+    </div>
+</body>
+</html> -->
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📰 Prediction Result</h1>
+        <div class="result-box">
+            <p><strong>News:</strong> {{ input_text }}</p>
+            <p><strong>Prediction:</strong> <span class="{{ prediction_class }}">{{ prediction }}</span></p>
+            <p><strong>Confidence:</strong> {{ probability }}%</p>
+        </div>
+
+        {% if show_graphs %}
+        <div class="graphs">
+            <h2>Model Performance</h2>
+            <img src="{{ url_for('static', filename='confusion.png') }}" alt="Confusion Matrix" width="400">
+            <img src="{{ url_for('static', filename='f1score.png') }}" alt="F1 Score" width="400">
+            <img src="{{ url_for('static', filename='probability.png') }}" alt="Prediction Probability" width="400">
+        </div>
+        {% endif %}
+        
+        <br><a href="/">← Try another</a>
+       
+    </div>
+</body>
+</html>
+
